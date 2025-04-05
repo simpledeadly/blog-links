@@ -1,0 +1,19 @@
+name: blog-links
+services:
+  postgres:
+    image: postgres:15
+    container_name: bl-postgres
+    ports:
+      - 5433:5432
+    environment:
+      - POSTGRES_DB=blog-links
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - bl-data:/var/lib/postgresql/data
+  # kratos:
+  # server:
+  # client:
+
+volumes:
+  bl-data:
