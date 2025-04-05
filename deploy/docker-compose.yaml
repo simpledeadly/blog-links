@@ -11,8 +11,16 @@ services:
       - POSTGRES_PASSWORD=password
     volumes:
       - bl-data:/var/lib/postgresql/data
+  server:
+    build:
+      context: ../apps/server
+      dockerfile: Dockerfile.dev
+    container_name: bl-server
+    ports:
+      - 8080:8080
+    volumes:
+      - ../apps/server:/app
   # kratos:
-  # server:
   # client:
 
 volumes:
