@@ -1,0 +1,362 @@
+Стек:
+Postgres
+Nodejs (Elisyajs)
+Nginx
+Vue + ts
+Ory/Kratos
+Ory/Keto?
+
+API:
+
+- POST /auth/register
+	Codes: 201, 400, 409
+	Query data null
+	Request data {
+	  "username": "User",
+	  "email": "test@test.test",
+	  "password": "password"
+	}
+	Response data {
+	  "id": 1,
+	  "username": "User",
+	  "email": "test@test.test",
+	  "is_admin": false
+	}
+- POST /auth/login
+	Codes: 200, 400
+	Query data null
+	Request data {
+	  "email": "test@test.test",
+	  "password": "password"
+	}
+	Response data {
+	  "id": 1,
+	  "username": "User",
+	  "email": "test@test.test",
+	  "is_admin": false
+	}
+- POST /auth/logout
+	Codes: 200, 401
+	Query data null
+	Request data null
+	Response data null
+- GET  /auth/whoami
+	Codes: 200, 401
+	Query data null
+	Request data null
+	Response data {
+	  "id": 1,
+	  "username": "User",
+	  "email": "test@test.test",
+	  "is_admin": false
+	}
+- POST /auth/password/restore
+	Codes: 200, 400
+	Query data null
+	Request data {
+	  "email": "test@test.test"
+	}
+	Response data null
+- POST /auth/password/change
+	Codes: 200, 400
+	Query data null
+	Request data {
+	  "code": "asdasdv234wrdd23",
+	  "email": "test@test.test",
+	  "password": "password"
+	}
+	Response data {
+	  "id": 1,
+	  "username": "User",
+	  "email": "test@test.test",
+	  "is_admin": false
+	}
+
+- GET    /posts
+	Codes: 200
+	Query data {
+	  tag[] = "Tag"
+          search = "Title"
+	  sort = title-asc,title-desc,created_at-asc,created_at-desc
+	  page = 1
+	  per_page = 20
+	}
+	Request data null
+	Response data [{
+	  "id": 1,
+	  "title": "Post title",
+	  "description": "<p>Description</p>",
+	  "url": "https://youtube.com",
+	  "tags": ["Tag"],
+	  "created_at": "timestamp",
+	  "author": {
+	    "id": 1,
+	    "username": "User",
+	    "email": "test@test.test",
+  	  }
+	}]
+- GET    /posts/{id}
+	Codes: 200, 403, 404
+	Query data null
+	Request data null
+	Response data {
+	  "id": 1,
+	  "title": "Post title",
+	  "description": "<p>Description</p>",
+	  "url": "https://youtube.com",
+	  "tags": ["Tag"],
+	  "created_at": "timestamp",
+	  "is_public": false,
+	  "author": {
+	    "id": 1,
+	    "username": "User",
+	    "email": "test@test.test",
+  	  }
+	}
+- POST   /posts
+	Codes: 201, 400, 401
+	Query data null
+	Request data {
+	  "title": "Post title",
+	  "description": "<p>Description</p>",
+	  "url": "https://youtube.com",
+	  "tags": ["Tag"]
+	}
+	Response data {
+	  "id": 1,
+	  "title": "Post title",
+	  "description": "<p>Description</p>",
+	  "url": "https://youtube.com",
+	  "tags": ["Tag"],
+	  "created_at": "timestamp",
+	  "is_public": false,
+	  "author": {
+	    "id": 1,
+	    "username": "User",
+	    "email": "test@test.test",
+  	  }
+	}
+- PUT    /posts/{id}
+	Codes: 200, 400, 401, 404
+	Query data null
+	Request data {
+	  "title": "Post title",
+	  "description": "<p>Description</p>",
+	  "url": "https://vk.com",
+	  "tags": ["Tag"],
+	}
+	Response data {
+	  "id": 1,
+	  "title": "Post title",
+	  "description": "<p>Description</p>",
+	  "url": "https://vk.com",
+	  "tags": ["Tag"],
+	  "created_at": "timestamp",
+	  "is_public": false,
+	  "author": {
+	    "id": 1,
+	    "username": "User",
+	    "email": "test@test.test",
+  	  }
+	}
+- DELETE /posts/{id}
+	Codes: 200, 401, 404
+	Query data null
+	Request data null
+	Response data null
+
+- GET    /posts/{id}/notes
+	Codes: 200, 401, 404
+	Query data {
+	  page = 1
+	  per_page = 20
+	}
+	Request data null
+	Response data [{
+	  "id": 1,
+	  "description": "<p>Description</p>",
+	}]
+- POST   /posts/{id}/notes
+	Codes: 201, 400, 401, 404
+	Query data null
+	Request data {
+	  "description": "<p>Description</p>",
+	}
+	Response data {
+	  "id": 1,
+	  "description": "<p>Description</p>",
+	}
+- PUT    /posts/{postId}/notes/{id}
+	Codes: 200, 400, 401, 404
+	Query data null
+	Request data {
+	  "description": "<p>Description putted</p>",
+	}
+	Response data {
+	  "id": 1,
+	  "description": "<p>Description putted</p>",
+	}
+- DELETE /posts/{id}/notes/{id}
+	Codes: 200, 401, 404
+	Query data null
+	Request data null
+	Response data null
+
+- GET /users/{id}
+	Codes: 200, 404
+	Query data null
+	Request data null
+	Response data {
+	  "id": 1,
+	  "username": "User",
+	  "email": "test@test.test"
+	}
+- GET /users/{id}/posts
+	Codes: 200, 404
+	Query data {
+	  tag[] = "Tag"
+          search = "Title"
+	  sort = title-asc,title-desc,created_at-asc,created_at-desc
+	  page = 1
+	  per_page = 20
+	}
+	Request data null
+	Response data [{
+	  "id": 1,
+	  "title": "Post title",
+	  "description": "<p>Description</p>",
+	  "url": "https://youtube.com",
+	  "tags": ["Tag"],
+	  "created_at": "timestamp",
+	  "is_public": false,
+	  "author": {
+	    "id": 1,
+	    "username": "User",
+	    "email": "test@test.test",
+  	  }
+	}]
+
+- GET  /tags
+	Codes: 200
+	Query data null
+	Request data null
+	Response data [{
+	  "title": "Tag",
+	  "children": ["Child"]
+	}]
+- POST /tags
+	Codes: 201, 400, 401, 409
+	Query data null
+	Request data {
+	  "title": "Tag",
+	  "children": ["Child"]
+	}
+	Response data {
+	  "title": "Tag",
+	  "children": ["Child"]
+	}
+
+Responses:
+
+- 200 OK
+	{
+	  "status": "ok",
+	  "code": 200,
+	  "message": "OK",
+	  "data": any
+	}
+
+- 201 Created
+	{
+	  "status": "ok",
+	  "code": 201,
+	  "message": "Created",
+	  "data": any
+	}
+
+Errors:
+
+- 400 Bad Request
+	{
+	  "status": "error",
+	  "code": 400,
+	  "message": "Bad request",
+	  "errors": {
+	    "field": "message"
+	  }
+	}
+
+- 401 Unauthorized
+	{
+	  "status": "error",
+	  "code": 401,
+	  "message": "Unauthorized"
+	}
+
+- 403 Forbidden
+	{
+	  "status": "error",
+	  "code": 403,
+	  "message": "Forbidden"
+	}
+
+- 404 Not found
+	{
+	  "status": "error",
+	  "code": 404,
+	  "message": "Not found"
+	}
+
+- 409 Conflict
+	{
+	  "status": "error",
+	  "code": 409,
+	  "message": "Conflict"
+	}
+
+- 500 Internal server error
+	{
+	  "status": "error",
+	  "code": 500,
+	  "message": "Internal server error"
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
