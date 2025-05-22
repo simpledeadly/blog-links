@@ -1,15 +1,11 @@
 {
   "name": "server",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "0.0.1",
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "build": "tsc src/index.ts --outDir dist",
     "start": "NODE_ENV=production node dist/index.js"
   },
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
     "@elysiajs/node": "^1.2.6",
     "elysia": "^1.2.25"
