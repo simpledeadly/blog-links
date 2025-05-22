@@ -14,6 +14,11 @@ tasks:
     desc: Up kratos service
     cmds:
       - docker compose -f {{.COMPOSE_FILE}} --env-file {{.ENV_FILE}} up kratos -d
+  
+  client:dev:
+    desc: Start client in dev mode
+    cmds:
+      - npm run dev -w=apps/client
 
   server:dev:
     desc: Start server in dev mode
