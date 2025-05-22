@@ -1,0 +1,10 @@
+version: v1.3.1
+
+selfservice:
+  default_browser_return_url: http://localhost:5173
+
+identity:
+  default_schema_id: default
+  schemas:
+    - id: default
+      url: file:///etc/config/kratos/default.schema.json

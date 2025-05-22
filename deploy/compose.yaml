@@ -1,0 +1,38 @@
+name: bl
+services:
+  db:
+    image: postgres:15
+    container_name: bl_db
+    ports:
+      - ${POSTGRES_PORT}:5432
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ../apps/db:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "${POSTGRES_USER}", "-d", "${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  kratos:
+    image: oryd/kratos:v1.3.1
+    container_name: bl_kratos
+    environment:
+      DSN: ${KRATOS_POSTGRES_DSN}
+    volumes:
+      - ../apps/auth:/etc/config/kratos
+    entrypoint: >
+      /bin/sh -c "
+        kratos migrate -c /etc/config/kratos/kratos.yml sql -e --yes &&
+        kratos serve -c /etc/config/kratos/kratos.yml
+      "
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pg_data:
