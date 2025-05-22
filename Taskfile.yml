@@ -5,27 +5,42 @@ vars:
   ENV_FILE: .env
 
 tasks:
+  core:up:
+    desc: Up core services
+    cmds:
+      - docker compose -f {{.COMPOSE_FILE}} --env-file {{.ENV_FILE}} up -d
+
+  core:down:
+    desc: Stop and remove core services
+    cmds:
+      - docker compose -f {{.COMPOSE_FILE}} --env-file {{.ENV_FILE}} down -v --rmi local
+
   db:up:
     desc: Up db service
     cmds:
-      - docker compose -f {{.COMPOSE_FILE}} --env-file {{.ENV_FILE}} up db -d
+      - docker compose -f {{.COMPOSE_FILE}} --env-file {{.ENV_FILE}} up db -d --no-deps
 
-  auth:up:
+  db:down:
+    desc: Down db service
+    cmds:
+      - docker compose -f {{.COMPOSE_FILE}} --env-file {{.ENV_FILE}} down db
+
+  kratos:up:
     desc: Up kratos service
     cmds:
-      - docker compose -f {{.COMPOSE_FILE}} --env-file {{.ENV_FILE}} up kratos -d
+      - docker compose -f {{.COMPOSE_FILE}} --env-file {{.ENV_FILE}} up kratos -d --no-deps
+
+  kratos:down:
+    desc: Down kratos service
+    cmds:
+      - docker compose -f {{.COMPOSE_FILE}} --env-file {{.ENV_FILE}} down kratos
   
   client:dev:
     desc: Start client in dev mode
     cmds:
-      - npm run dev -w=apps/client
+      - npm run dev -w=services/client
 
   server:dev:
     desc: Start server in dev mode
     cmds:
-      - npm run dev -w=apps/server
-
-  down:
-    desc: Stop and remove all services
-    cmds:
-      - docker compose -f {{.COMPOSE_FILE}} --env-file {{.ENV_FILE}} down -v --rmi local
+      - npm run dev -w=services/server
