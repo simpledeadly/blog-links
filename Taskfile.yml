@@ -15,6 +15,11 @@ tasks:
     cmds:
       - docker compose -f {{.COMPOSE_FILE}} --env-file {{.ENV_FILE}} up kratos -d
 
+  server:dev:
+    desc: Start server in dev mode
+    cmds:
+      - npm run dev -w=apps/server
+
   down:
     desc: Stop and remove all services
     cmds:

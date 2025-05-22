@@ -7,12 +7,12 @@
     "start": "NODE_ENV=production node dist/index.js"
   },
   "dependencies": {
-    "@elysiajs/node": "^1.2.6",
-    "elysia": "^1.2.25"
+    "@elysiajs/node": "1.2.6",
+    "elysia": "1.2.25"
   },
   "devDependencies": {
-    "@types/node": "^22.14.0",
-    "tsx": "^4.19.3",
-    "typescript": "^5.8.3"
+    "@types/node": "22.14.0",
+    "tsx": "4.19.3",
+    "typescript": "5.8.3"
   }
 }
