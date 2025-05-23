@@ -1,7 +1,9 @@
 <script setup lang="ts">
-//
+
 </script>
 
 <template>
-  <div>app</div>
+  <div>
+    <button />
+  </div>
 </template>

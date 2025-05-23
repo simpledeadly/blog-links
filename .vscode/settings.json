@@ -1,0 +1,27 @@
+{
+  /** Files */
+  "files.eol": "\n",
+  "files.encoding": "utf8",
+
+  /** Typescript */
+  "typescript.tsdk": "node_modules/typescript/lib",
+
+  /** Eslint */
+  "eslint.workingDirectories": ["services/client", "services/server"],
+  "eslint.validate": ["javascript", "typescript", "vue"],
+  "eslint.useFlatConfig": true,
+
+  /** Editor */
+  "editor.tabSize": 2,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "never",
+    "source.fixAll.eslint": "explicit"
+  },
+
+  /** Formatting */
+  "[typescript][vue][css][scss]": {
+    "editor.formatOnPaste": false,
+    "editor.formatOnType": false,
+    "editor.formatOnSave": false
+  }
+}

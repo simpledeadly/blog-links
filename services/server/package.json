@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "build": "tsc src/index.ts --outDir dist",
-    "start": "NODE_ENV=production node dist/index.js"
+    "start": "NODE_ENV=production node dist/index.js",
+    "eslint:inspect": "eslint --inspect-config",
+    "eslint:check": "eslint \"**/*.ts\""
   },
   "dependencies": {
     "@elysiajs/node": "1.2.6",
@@ -15,6 +17,8 @@
   "devDependencies": {
     "@types/node": "22.14.0",
     "tsx": "4.19.3",
-    "typescript": "5.8.3"
+    "typescript": "5.8.3",
+    "@bl/tsconfig": "*",
+    "@bl/eslint": "*"
   }
 }

@@ -1,8 +1,0 @@
-{
-  "files": [],
-  "references": [
-    { "path": "./services/client/tsconfig.vue.json" },
-    { "path": "./services/client/tsconfig.vite.json" },
-    { "path": "./services/server/tsconfig.server.json" }
-  ]
-}

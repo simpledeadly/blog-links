@@ -34,13 +34,33 @@ tasks:
     desc: Down kratos service
     cmds:
       - docker compose -f {{.COMPOSE_FILE}} --env-file {{.ENV_FILE}} down kratos
-  
+
   client:dev:
     desc: Start client in dev mode
     cmds:
       - npm run dev -w=services/client
 
+  client:eslint:inspect:
+    desc: Inspect eslint configuration
+    cmds:
+      - npm run eslint:inspect -w=services/client
+
+  client:eslint:check:
+    desc: Check lint files
+    cmds:
+      - npm run eslint:check -w=services/client
+
   server:dev:
     desc: Start server in dev mode
     cmds:
       - npm run dev -w=services/server
+
+  server:eslint:inspect:
+    desc: Inspect eslint configuration
+    cmds:
+      - npm run eslint:inspect -w=services/server
+
+  server:eslint:check:
+    desc: Check lint files
+    cmds:
+      - npm run eslint:check -w=services/server

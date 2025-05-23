@@ -3,7 +3,8 @@
     "workspaces": [
         "services/client",
         "services/server",
-        "packages/tsconfig"
+        "packages/tsconfig",
+        "packages/eslint"
     ],
     "volta": {
         "node": "22.16.0",
