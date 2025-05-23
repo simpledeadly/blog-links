@@ -2,7 +2,8 @@
     "private": true,
     "workspaces": [
         "services/client",
-        "services/server"
+        "services/server",
+        "packages/tsconfig"
     ],
     "volta": {
         "node": "22.16.0",
