@@ -5,13 +5,13 @@ vars:
   ENV_FILE: .env
 
 tasks:
-  core:up:
-    desc: Up core services
+  infra:up:
+    desc: Up infra services
     cmds:
       - docker compose -f {{.COMPOSE_FILE}} --env-file {{.ENV_FILE}} up -d
 
-  core:down:
-    desc: Stop and remove core services
+  infra:down:
+    desc: Stop and remove infra services
     cmds:
       - docker compose -f {{.COMPOSE_FILE}} --env-file {{.ENV_FILE}} down -v --rmi local
 
@@ -38,29 +38,29 @@ tasks:
   client:dev:
     desc: Start client in dev mode
     cmds:
-      - npm run dev -w=services/client
+      - npm run dev -w=apps/client
 
   client:eslint:inspect:
     desc: Inspect eslint configuration
     cmds:
-      - npm run eslint:inspect -w=services/client
+      - npm run eslint:inspect -w=apps/client
 
   client:eslint:check:
     desc: Check lint files
     cmds:
-      - npm run eslint:check -w=services/client
+      - npm run eslint:check -w=apps/client
 
   server:dev:
     desc: Start server in dev mode
     cmds:
-      - npm run dev -w=services/server
+      - npm run dev -w=apps/server
 
   server:eslint:inspect:
     desc: Inspect eslint configuration
     cmds:
-      - npm run eslint:inspect -w=services/server
+      - npm run eslint:inspect -w=apps/server
 
   server:eslint:check:
     desc: Check lint files
     cmds:
-      - npm run eslint:check -w=services/server
+      - npm run eslint:check -w=apps/server

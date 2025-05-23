@@ -7,7 +7,7 @@
   "typescript.tsdk": "node_modules/typescript/lib",
 
   /** Eslint */
-  "eslint.workingDirectories": ["services/client", "services/server"],
+  "eslint.workingDirectories": ["apps/client", "apps/server"],
   "eslint.validate": ["javascript", "typescript", "vue"],
   "eslint.useFlatConfig": true,
 

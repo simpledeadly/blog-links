@@ -1,8 +1,8 @@
 {
     "private": true,
     "workspaces": [
-        "services/client",
-        "services/server",
+        "apps/client",
+        "apps/server",
         "packages/tsconfig",
         "packages/eslint"
     ],

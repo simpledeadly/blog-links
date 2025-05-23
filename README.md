@@ -1,3 +1,3 @@
 # Blog
 
-chmod +x services/db/init-db.sh
+chmod +x infra/db/init-db.sh

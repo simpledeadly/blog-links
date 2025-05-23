@@ -11,7 +11,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - pg_data:/var/lib/postgresql/data
-      - ../services/db:/docker-entrypoint-initdb.d
+      - ../infra/db:/docker-entrypoint-initdb.d
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "${POSTGRES_USER}", "-d", "${POSTGRES_DB}"]
       interval: 5s
@@ -24,7 +24,7 @@ services:
     environment:
       DSN: ${KRATOS_POSTGRES_DSN}
     volumes:
-      - ../services/kratos:/etc/config/kratos
+      - ../infra/kratos:/etc/config/kratos
     entrypoint: >
       /bin/sh -c "
         kratos migrate -c /etc/config/kratos/kratos.yml sql -e --yes &&
