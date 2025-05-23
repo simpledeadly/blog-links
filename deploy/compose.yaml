@@ -1,7 +1,9 @@
 name: bl
 services:
   db:
-    image: postgres:15
+    build:
+      context: ../infra/db
+      dockerfile: Dockerfile
     container_name: bl_db
     ports:
       - ${POSTGRES_PORT}:5432
@@ -11,7 +13,6 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - pg_data:/var/lib/postgresql/data
-      - ../infra/db:/docker-entrypoint-initdb.d
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "${POSTGRES_USER}", "-d", "${POSTGRES_DB}"]
       interval: 5s
